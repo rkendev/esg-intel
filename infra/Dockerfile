@@ -2,6 +2,7 @@
 FROM python:3.11-slim AS base
 
 # ---------- metadata ------------
+ARG ESG_BASE_VERSION
 LABEL maintainer="rkendev <you@example.com>" \
       org.opencontainers.image.source="https://github.com/rkendev/esg-intel" \
       org.opencontainers.image.title="esg-base" \
