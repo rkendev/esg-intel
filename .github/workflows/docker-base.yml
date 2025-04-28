@@ -1,0 +1,46 @@
+name: build-base-image
+
+on:
+  push:
+    paths:
+      - "infra/Dockerfile"
+      - ".github/workflows/docker-base.yml"
+  pull_request:
+    paths:
+      - "infra/Dockerfile"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Login only when the workflow is allowed to push (i.e. not for PRs from forks)
+      - name: Log in to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_PAT }}   # <-- add this PAT in your repo → Settings → Secrets → Actions
+
+      - name: Build (and push on non‑PR events)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: infra/Dockerfile
+          build-args: |
+            ESG_BASE_VERSION=${{ github.sha }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/esg-base:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/esg-base:latest
