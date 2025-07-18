@@ -1,0 +1,191 @@
+﻿ESG NLP Project – Kick‑off Workshop Outcomes
+Meeting Snapshot
+* Date: ___ April 2025
+
+* Duration: 1 h 10 m
+
+* Facilitator: Project Manager – <PM Name>
+
+* Recorder: Data Science Lead – <DS Lead Name>
+
+________________
+
+
+1  Shared Vision (All Attendees)
+“Deliver an auditable, data‑driven ESG‑disclosure intelligence platform that flags greenwashing risk and provides interpretable scores & explanations to analysts before regulatory or reputational events occur.”
+Consensus reached ✔️
+________________
+
+
+2  Scope & MVP Boundaries (Project Manager)
+In‑Scope for Sprints 0‑6
+   1. Data Ingestion: CSR & 10‑K text (2018‑2024)
+
+   2. Model Suite:
+
+      * ESG score regression (FinBERT fine‑tune)
+
+      * Greenwashing flag classifier
+
+         3. Explainability: SHAP + LIME artefacts stored
+
+         4. Delivery: FastAPI micro‑service + Streamlit dashboard (read‑only)
+
+         5. Nightly Batch Pipeline: Airflow DAG in staging
+
+Out‑of‑Scope (Defer to Phase 2)
+            * Real‑time social / news streaming
+
+            * RAG chatbot
+
+            * SLA ≥ 99.9 %
+
+Change‑Control Note
+Any new functionality requests to go through PM’s backlog grooming, approved by Product Owner.
+________________
+
+
+3  Success Metrics & Targets (Data Science Lead)
+KPI
+	Target
+	Rationale
+	MAE vs MSCI rating
+	≤ 0.60
+	Aligns with top‑quartile academic benchmarks
+	Greenwashing flag precision
+	≥ 0.70
+	Controls analyst review workload
+	Portfolio coverage
+	≥ 85 % (by market cap)
+	Ensures broad applicability
+	Dashboard p95 latency
+	< 1 s
+	Smooth analyst experience
+	Weekly active analysts
+	≥ 3
+	Early adoption signal
+	Metrics accepted ✔️
+________________
+
+
+4  Definition of Done – MVP (Engineering Lead)
+               1. Pipeline reliability: Airflow DAG success ≥ 97 % (last 30 runs)
+
+               2. Model registry: All production models versioned in MLflow & promoted to “Prod” stage
+
+               3. Code quality: CI with ≥ 90 % unit‑test coverage & 0 critical lints
+
+               4. Bias audit: Aequitas report approved by Risk & Compliance
+
+               5. Dashboard: Scores + SHAP plots for ≥ 500 companies in staging
+
+               6. Stakeholder UAT: Product Owner sign‑off after demo Sprint 5
+
+Agreement captured ✔️
+________________
+
+
+5  Risk & Dependency Register (Risk & Compliance Lead)
+ID
+	Risk
+	Owner
+	Mitigation
+	Status
+	R‑01
+	ESG ratings license delay
+	Risk Lead
+	Expedite legal request; fall‑back to Refinitiv open sample
+	Open
+	R‑02
+	OCR accuracy on scanned PDFs
+	DS/DE Expert (You)
+	Evaluate Tesseract v5 vs Amazon Textract Sprint 1
+	Open
+	R‑03
+	GPU quota (EKS‑dev)
+	Engineering Lead
+	Request 1 A10G node this week
+	In progress
+	R‑04
+	Sector bias (Energy)
+	DS Lead
+	Sector‑stratified CV in Sprint 4
+	Open
+	________________
+
+
+6  Action Item Log
+#
+	Task
+	Owner
+	Due Date
+	1
+	Circulate final Charter & slides
+	PM
+	+1 day
+	2
+	Initiate ESG‑ratings license paperwork
+	Risk Lead
+	+3 days
+	3
+	Build base Docker image & commit to repo
+	Engineering Lead
+	+4 days
+	4
+	Draft scraping POC for 30 companies
+	You (DS/DE Expert)
+	+10 days (end Sprint 1)
+	5
+	Benchmark OCR tools & report
+	You
+	+10 days
+	6
+	Create Jira board & seed Sprint 0 tasks
+	PM
+	+2 days
+	7
+	Schedule weekly stand‑up & bi‑weekly review
+	PM
+	+1 day
+	________________
+
+
+7  Communication Cadence
+                  * Weekly 30‑min stand‑up: Wed 10:00 CET
+
+                  * Sprint Review / Planning: Bi‑weekly Fri 14:00 CET
+
+                  * Risk & Compliance check‑in: Monthly
+
+                  * Slack channel: #proj‑esg‑nlp (created)
+
+________________
+
+
+8  Go / No‑Go Decision
+All core stakeholders voiced “Go” → Sprint 0 officially underway.
+________________
+
+
+Appendix – Attendee Role Matrix
+Role
+	Responsibilities in Project
+	Project Manager
+	Schedule, scope control, artefact sign‑off, Jira owner
+	Data Science Lead
+	ML methodology, metrics definition, model validation
+	Risk & Compliance Lead
+	Data licensing, bias & explainability audit, regulatory watch
+	Product Owner (Sustainable‑Investment PM)
+	Business requirements, prioritisation, UAT approval
+	Engineering Lead
+	Infra, CI/CD, SLA monitoring, deployment health
+	You – DS/DE Expert
+	ETL pipelines, feature store, model training & optimisation
+	Stakeholder reps
+	Provide domain feedback; attend demos
+	________________
+
+
+Next Checkpoint
+Sprint 0 status update scheduled: [date], 15 min, to confirm completion of Action Items #1–3.

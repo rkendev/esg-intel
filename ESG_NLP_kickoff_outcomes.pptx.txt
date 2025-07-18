@@ -1,0 +1,56 @@
+ESG NLP Project – Kick-off Workshop Outcomes
+April 2025
+
+Shared Vision & Objectives
+Deliver an auditable, data-driven ESG-disclosure intelligence platform that flags greenwashing risk and provides interpretable scores and explanations to analysts before regulatory or reputational events occur.
+
+MVP Scope – In
+CSR & 10‑K text ingestion (2018–2024)
+ESG score regression (FinBERT fine‑tune)
+Greenwashing flag classifier
+SHAP/LIME explainability artefacts
+FastAPI microservice & Streamlit dashboard
+Nightly Airflow batch pipeline
+
+MVP Scope – Out
+Real‑time social/media streaming
+Retrieval‑augmented chatbot
+Production SLA ≥ 99.9 %
+
+Success Metrics & Targets
+MAE vs MSCI rating ≤ 0.60
+Greenwashing flag precision ≥ 0.70
+Portfolio coverage ≥ 85 % (by market cap)
+Dashboard p95 latency < 1 s
+≥ 3 weekly active analysts
+
+Definition of Done – MVP
+Airflow DAG success ≥ 97 % over 30 runs
+Production models versioned in MLflow
+CI: ≥ 90 % unit-test coverage; 0 critical lints
+Aequitas bias audit approved
+Dashboard live with ≥ 500 companies
+Product Owner UAT sign‑off
+
+Risk Register – Top Items
+ESG ratings licence delay – owner: Risk Lead
+OCR accuracy on scanned PDFs – owner: DS/DE Expert
+GPU quota on EKS – owner: Eng Lead
+Sector bias (Energy) – owner: DS Lead
+
+Immediate Action Items
+Circulate charter & slides – PM (D+1)
+Initiate ESG licence paperwork – Risk Lead (D+3)
+Build base Docker image – Eng Lead (D+4)
+Scraping POC 30 companies – DS/DE Expert (D+10)
+OCR benchmark report – DS/DE Expert (D+10)
+Seed Jira board – PM (D+2)
+
+Communication Cadence
+Weekly stand‑up: Wednesday 10:00 CET (30 min)
+Sprint Review & Planning: Bi‑weekly Friday 14:00 CET
+Monthly Risk & Compliance check‑in
+Slack channel: #proj‑esg‑nlp
+
+Go / No‑Go Decision
+All stakeholders approved 'Go' – Sprint 0 underway

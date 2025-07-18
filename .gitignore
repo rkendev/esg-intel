@@ -1,0 +1,8 @@
+# Terraform / Azure sandbox
+infra/azure_sandbox/.terraform/
+infra/azure_sandbox/*.tfplan
+infra/azure_sandbox/kubeconfig
+infra/azure_sandbox/env/*.tfvars
+
+# JS deps
+node_modules/
