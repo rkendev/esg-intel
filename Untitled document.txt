@@ -1,0 +1,177 @@
+﻿ESG NLP Project – Sprint 0 Kick‑off Workshop
+Meeting Details
+* Date/Time: ____ April 2025 (1 h 10 min)
+
+* Location: Zoom / Conference Room 3A
+
+* Attendees:
+
+   * Project Manager – [Name]
+
+   * Data Science Lead – [Name]
+
+   * Risk & Compliance Lead – [Name]
+
+   * Sustainable‑Investment PM (Product Owner) – [Name]
+
+   * Engineering Lead – [Name]
+
+   * Additional Stakeholder Representatives
+
+Objectives
+      1. Align on project vision and business value.
+
+      2. Finalise scope boundaries for MVP (Sprints 0–6).
+
+      3. Agree on measurable success metrics & KPIs.
+
+      4. Ratify Definition of Done (DoD) for MVP.
+
+      5. Surface key risks, assumptions, and dependencies.
+
+      6. Confirm next‑step actions and owners.
+
+Agenda
+Start
+	Duration
+	Topic
+	Facilitator
+	00:00
+	5 min
+	Welcome & roles
+	PM
+	00:05
+	10 min
+	Project vision & background
+	Product Owner
+	00:15
+	15 min
+	Success metrics / KPIs
+	Data Science Lead
+	00:30
+	15 min
+	Scope: in/out & milestones
+	PM
+	00:45
+	10 min
+	Definition of Done
+	PM + All
+	00:55
+	10 min
+	Risks, assumptions, compliance constraints
+	Risk Lead
+	01:05
+	5 min
+	Next steps & close
+	PM
+	01:10
+	—
+	End
+	
+
+	Prep / Pre‑reads
+         * CRISP‑DM playbook v1 (link)
+
+         * Sprint & resourcing plan (link)
+
+         * Draft data‑source catalogue v0.1
+
+Draft Scope Statement (for discussion)
+In‑scope (MVP)
+            * CSR & 10‑K text ingestion (2018–2024)
+
+            * ESG score regression & greenwashing flag
+
+            * Streamlit analytical dashboard (read‑only)
+
+            * FastAPI scoring microservice (batch + realtime)
+
+Out‑of‑scope (MVP)
+               * Real‑time social media streaming
+
+               * Sector‑specific carbon accounting models
+
+               * RAG explanation chatbot
+
+               * Production SLA > 99.9 % (target 99 %)
+
+Proposed Success Metrics & Targets
+KPI
+	Owner
+	Current baseline
+	Target (MVP)
+	Regression MAE vs MSCI rating
+	DS Lead
+	n/a
+	≤ 0.6 rating points
+	Greenwashing flag precision
+	DS Lead
+	n/a
+	≥ 0.70
+	Coverage of portfolio firms
+	PM
+	0 %
+	≥ 85 %
+	Dashboard p95 latency
+	Eng Lead
+	n/a
+	< 1 s
+	Analyst adoption
+	Product Owner
+	n/a
+	≥ 3 analysts weekly usage
+	Definition of Done – MVP
+                  1. End‑to‑end pipeline runs nightly in staging (Airflow DAG green).
+
+                  2. Model artefacts registered in MLflow with version tags.
+
+                  3. CI pipeline passes: lint, unit (≥ 90 %), integration tests.
+
+                  4. Dashboard deployed; demonstrates score + SHAP for ≥ 500 companies.
+
+                  5. Risk sign‑off on data sources, model explainability, bias audit.
+
+                  6. Product Owner sign‑off after UAT session.
+
+Initial Risk & Dependency Register
+ID
+	Description
+	Impact
+	Likelihood
+	Mitigation
+	R‑01
+	ESG ratings license approval delayed
+	High
+	Med
+	Start legal process this week
+	R‑02
+	PDF OCR accuracy for scanned CSR
+	Med
+	High
+	Benchmark OCR tools in Sprint 1
+	R‑03
+	GPU quota on EKS
+	Med
+	Low
+	Request capacity now
+	Action Items
+No.
+	Task
+	Owner
+	Due
+	1
+	Review & edit success metrics table
+	DS Lead
+	+3 days
+	2
+	Confirm legal stance on EDGAR scraping
+	Risk Lead
+	+5 days
+	3
+	Reserve 1 GPU node on EKS‑dev
+	Eng Lead
+	+2 days
+	4
+	Circulate calendar invite for workshop
+	PM
+	today

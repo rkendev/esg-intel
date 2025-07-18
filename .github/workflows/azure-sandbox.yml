@@ -1,0 +1,46 @@
+name: azure-sandbox
+
+on:
+  push:
+    paths:
+      - "infra/azure-sandbox/**"
+  pull_request:
+    paths:
+      - "infra/azure-sandbox/**"
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write    # OIDC for az login
+      contents: read
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id:  ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Terraform Init
+      working-directory: infra/azure-sandbox
+      run: terraform init -backend-config=env/backend.hcl
+
+    - name: Terraform Plan
+      working-directory: infra/azure-sandbox
+      run: terraform plan -input=false
+
+    # Apply only on protected branch or with manual approval
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main'
+      working-directory: infra/azure-sandbox
+      run: terraform apply -auto-approve -input=false

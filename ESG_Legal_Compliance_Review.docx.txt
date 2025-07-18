@@ -1,0 +1,103 @@
+﻿Legal & Copyright Review – ESG NLP Project (Step 0-2)
+Prepared by: Risk & Compliance Lead – <Name> (with DS/DE Expert)
+Revision Date: 24 April 2025 (v1.1 – incorporates legal review comments)
+1  Purpose
+Assess legality of:
+(i) scraping SEC EDGAR filings and
+(ii) collecting Corporate Sustainability Reports (CSR) for internal ML use.
+Includes Fair-Use Memo for EDGAR.
+2  EDGAR Filings – Rights & Restrictions
+Aspect
+	Finding
+	Source
+	Copyright
+	“All Government-created content on sec.gov and EDGAR public filing content are free to access and reuse.”
+	SEC Webmaster FAQ
+	Redistribution
+	Information may be copied or further distributed without SEC permission.
+	sec.gov
+	Rate limits
+	≤ 10 requests / second per public-facing IPv4/IPv6 address. For distributed scraping (e.g., AWS Lambda), throttle aggregate traffic or request a written waiver via webmaster@sec.gov.
+	SEC Developer Resources
+	Trademark
+	“SEC” & EDGAR marks registered. Add disclaimer in UI/docs: “Not affiliated with or endorsed by the U.S. Securities and Exchange Commission.”
+	sec.gov
+	Privacy
+	Filings are public; PII rare.
+	—
+	Fair-Use Analysis (17 U.S.C. § 107)
+Factor
+	Analysis
+	Purpose & character
+	Transformative, non-commercial research; outputs are derived statistics, not verbatim text.
+	Nature of work
+	Factual, publicly mandated disclosures.
+	Amount used
+	Full documents ingested – necessary for ESG context; storage internal only.
+	Market effect
+	No negative impact; filings are free; we do not resell text.
+	Conclusion
+	Fair-use strongly satisfied.
+	3  Corporate Sustainability Reports (CSR)
+CSR PDFs are typically © the issuer; no blanket statutory exemption. However, large-scale text mining for research is recognised as transformative fair use (see Authors Guild v. Google, 804 F.3d 202 (2d Cir. 2015)).
+Risk Assessment
+Risk
+	Likelihood
+	Impact
+	Mitigation
+	Copyright infringement if reports republished externally
+	Low
+	Medium
+	Store raw PDFs private; external publications limited to embeddings/aggregates; request permission for excerpts > 300 words.
+	Jurisdictional nuances (EU database right)
+	Low
+	Low
+	Outputs are transformative; no raw redistribution.
+	4  Data-Handling Controls
+* Storage: S3 buckets raw/, processed/, features/, encryption-at-rest.
+* Access: IAM roles (esg-etl, esg-ml, esg-dashboard) – least privilege.
+* Retention: Raw filings kept up to 3 years (aligns with internal policy FIN-POL-17) or longer if required by regulation; derived features retained indefinitely.
+* Redaction: If PII detected, scrub via spaCy NER before storage.
+* Privacy Audit: Quarterly PII scan of raw corpus; results logged in Risk register.
+5  Open Tasks
+#
+	Task
+	Owner
+	Due
+	1
+	Upload signed Fair-Use memo to Confluence
+	Risk Lead
+	+2 days
+	2
+	Add SEC User-Agent header & throttle config to scraper
+	Eng Lead
+	+3 days
+	3
+	Validate scraper respects 10 req/s aggregate limit
+	DS/DE Expert
+	Sprint 1 demo
+	4
+	Draft CSR excerpt-use guidelines
+	Risk Lead
+	+7 days
+	5
+	Review ESG ratings licence terms for model-training use & redistribution
+	Legal Counsel
+	+7 days
+	6  Sign-off
+Name
+	Role
+	Decision
+	Date
+	<Risk Lead>
+	Risk & Compliance
+	✅ Approve
+	24 Apr 2025
+	<Legal Counsel>
+	Legal
+	✅ Approve
+	24 Apr 2025
+	7  Reference URLs
+* SEC Developer Resources – sec.gov/about/developer-resources
+* SEC Rate-Control FAQ – sec.gov/filergroup/.../new-rate-control-limits
+* Authors Guild v. Google (2015) – casetext.com/case/authors-guild-v-google-inc
