@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: esg-base-smoke
+  namespace: esg-dev
+spec:
+  ttlSecondsAfterFinished: 3600        # <- keep pods 1 h after completion
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: smoke
+          image: esgacr84f17ab7.azurecr.io/esg-base:dev
+          command: ["python", "-c", "print('✅ libraries import ok')"]
